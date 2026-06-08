@@ -14,3 +14,7 @@ __pycache__/
 # Archivos generados por la app
 output/
 logs/
+
+# Documentación personal (Manual de estudio)
+guia_maestra.html
+guia_maestra_desarrollo.pdf
