@@ -1,5 +1,5 @@
-from translator.TranslatorServices import TranslatorService
-from utils.utils import get_user_input
+from src.translator.TranslatorServices import TranslatorService
+from src.utils.utils import get_user_input
 
 #UI
 text = get_user_input("What would you like to transalate?")
