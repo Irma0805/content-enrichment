@@ -16,7 +16,7 @@ class WikipediaScraper:
 
     def search_topic(self, topic: str) -> dict:
         try:
-            html = self.client.get_page(topic)
+            html = self.client.get_page(self.build_url(topic))
             if not html:
                 return {}
             return self.parser.parse(html)

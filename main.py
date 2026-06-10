@@ -1,11 +1,23 @@
+from src.wikipedia.WikipediaScraper import WikipediaScraper
 from src.translator.TranslatorServices import TranslatorService
 from src.utils.utils import get_user_input
 
-#UI
-text = get_user_input("What would you like to transalate?")
-src_lang = get_user_input("What is the source language?")
-tgt_lang = get_user_input("What is the target language?")
+# UI — recogida de datos del usuario
+topic = get_user_input("¿Sobre qué tema quieres buscar? ")
+tgt_lang = get_user_input("¿A qué idioma quieres traducir el contenido? (ej: en, fr, de) ")
 
-#instancia de la clase = 0BJETO DE CLASE-----aquí se está ejecutando el programa
-translator = TranslatorService().translate_text(text, src_lang, tgt_lang)
-print(translator)
+# Paso 1 — Scraping
+result = WikipediaScraper().search_topic(topic)
+
+if not result:
+    print("No se pudo obtener el contenido. Saliendo.")
+else:
+    print(f"\nTítulo: {result['title']}")
+    print(f"\nContenido:\n")
+    for p in result["paragraphs"]:
+        print(p)
+
+    # Paso 2 — Traducción
+    full_text = "\n".join(result["paragraphs"])
+    translator = TranslatorService().translate_text(full_text, "es", tgt_lang)
+    print(f"\nContenido traducido:\n{translator}")
