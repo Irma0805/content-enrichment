@@ -21,5 +21,5 @@ class WikipediaScraper:
                 return {}
             return self.parser.parse(html)
         except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+            print(f"Ha habido un error inesperado: {e}")
             return {}
