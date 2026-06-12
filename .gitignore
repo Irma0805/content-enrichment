@@ -15,7 +15,3 @@ __pycache__/
 output/
 logs/
 
-# Documentación personal (Manual de estudio)
-guia_maestra.html
-guia_maestra_desarrollo.pdf
-guia_sesion_01_content_enrichment.html
