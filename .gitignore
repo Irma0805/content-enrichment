@@ -15,3 +15,5 @@ __pycache__/
 output/
 logs/
 
+# Reportes de cobertura de tests
+.coverage
