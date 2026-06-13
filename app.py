@@ -17,6 +17,7 @@ class App:
         self.result = {}
         self.enriched_text = ""
         self.translated_text = ""
+        self.original_text = ""
 
     def run(self):
         topic = get_user_input("¿Sobre qué tema quieres buscar? ")
@@ -31,15 +32,15 @@ class App:
         for p in self.result["paragraphs"]:
             print(p)
 
-        full_text = "\n".join(self.result["paragraphs"])
+        self.original_text = "\n".join(self.result["paragraphs"])
 
         enrich = get_user_input("¿Quieres enriquecer el contenido con IA? (s/n) ")
 
         if enrich == "s":
-            self.enriched_text = self.enricher.enrich_text(full_text)
+            self.enriched_text = self.enricher.enrich_text(self.original_text )
             print(f"\nContenido enriquecido:\n{self.enriched_text}")
         else:
-            self.enriched_text = full_text
+            self.enriched_text = self.original_text
 
         self.translated_text = self.translator.translate_text(self.enriched_text, "es", tgt_lang)
         print(f"\nContenido traducido:\n{self.translated_text}")
@@ -49,5 +50,10 @@ class App:
             filename = get_user_input("¿Qué nombre quieres darle al archivo? ")
             file_format = get_user_input("¿En qué formato lo quieres guardar? (txt/pdf) ")
 
-            content = f"Título: {self.result['title']}\n\n{self.translated_text}"
+            content = (f"Título: {self.result['title']}\n\n"
+                        f"===CONTENIDO ORIGINAL===\n{self.original_text}\n\n"
+                        f"===CONTENIDO ENRIQUECIDO===\n{self.enriched_text}\n\n"
+                        f"===CONTENIDO TRADUCIDO===\n{self.translated_text}\n\n"
+                       )
+
             self.exporter.export(content, filename, file_format)
