@@ -49,5 +49,9 @@ class App:
             filename = get_user_input("¿Qué nombre quieres darle al archivo? ")
             file_format = get_user_input("¿En qué formato lo quieres guardar? (txt/pdf) ")
 
-            content = f"Título: {self.result['title']}\n\n{self.translated_text}"
+            content = (f"Título: {self.result['title']}\n\n"
+                       f"===CONTENIDO ORIGINAL===\n{self.original_text}\n\n"
+                       f"===CONTENIDO ENRIQUECIDO===\n{self.enriched_text}\n\n"
+                       f"===CONTENIDO TRADUCIDO===\n{self.translated_text}\n\n"
+                       )
             self.exporter.export(content, filename, file_format)
