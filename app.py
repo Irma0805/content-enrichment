@@ -15,6 +15,7 @@ class App:
         self.exporter = FileExporter()
 
         self.result = {}
+        self.original_text = ""
         self.enriched_text = ""
         self.translated_text = ""
 
